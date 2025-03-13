@@ -569,6 +569,24 @@ const GraduateForm = () => {
               rules={{ required: "Contact Information is required" }}
               className=""
             />
+            <ControlledInput
+              label="password"
+              placeholder="Enter your password"
+              control={control}
+              name="password"
+              type="password"
+              rules={{ required: "password is required" }}
+              className=""
+            />
+            <ControlledInput
+              label="password2"
+              placeholder="confirm your password"
+              control={control}
+              name="password2"
+              type="password"
+              rules={{ required: "password confirmation is required" }}
+              className=""
+            />
             <ControlledTextArea
               label="Any other comment"
               placeholder="Enter comment"

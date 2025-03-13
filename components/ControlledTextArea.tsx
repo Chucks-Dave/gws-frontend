@@ -38,7 +38,7 @@ const ControlledTextArea = ({
               }`}
             />
             {fieldState.error && (
-              <span className="text-red-500 text-xs">
+              <span className="text-red-500 text-xs playfair">
                 {fieldState.error.message}
               </span>
             )}

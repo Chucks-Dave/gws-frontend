@@ -158,7 +158,7 @@ const ControlledInput = ({
             )}
 
             {fieldState.error && (
-              <span className="text-red-500 text-xs text-center">
+              <span className="text-red-500 text-xs text-center playfair">
                 {fieldState.error.message}
               </span>
             )}

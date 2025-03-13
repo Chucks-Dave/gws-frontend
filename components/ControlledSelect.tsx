@@ -35,7 +35,7 @@ const ControlledSelect: React.FC<ControlledSelectProps> = ({
             <select
               {...field}
               className={`  p-2 lg:w-full max-md:w-full rounded-[4px] px-5 py-[15px] relative drop-shadow-lg focus:outline-none" ${
-                fieldState.error ? "border-red-500 border" : ""
+                fieldState.error ? "border-red-500 border " : ""
               }`}
             >
               <option value="">Select an option</option>
@@ -46,7 +46,7 @@ const ControlledSelect: React.FC<ControlledSelectProps> = ({
               ))}
             </select>
             {fieldState.error && (
-              <span className="text-red-500 text-xs">
+              <span className="text-red-500 text-xs playfair">
                 {fieldState.error.message}
               </span>
             )}

@@ -1,8 +1,10 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import CustomInput from "../../../../components/CustomInput";
+
 import { SubmitHandler, useForm } from "react-hook-form";
+import ControlledInput from "../../../../components/ControlledInput";
+import ControlledTextArea from "../../../../components/ControlledTextArea";
 
 const BusinessOwner = () => {
   return (
@@ -30,209 +32,93 @@ interface IFormInputs {
   description: string;
 }
 const BussinessOwnerForm = () => {
-  const {
-    register,
-    clearErrors,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<IFormInputs>();
+  const { handleSubmit, control } = useForm<IFormInputs>();
   const onSubmit: SubmitHandler<IFormInputs> = (data) => console.log(data);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 flex flex-col">
       <h1 className="font-medium text-[2.75rem] playfair leading-[3.25rem] text-gws text-center pb-8">
         We Help Connect Business Owners With Graduates
       </h1>
       <div className="flex flex-col gap-3">
-        <div className="flex row-start-2 flex-col gap-5">
-          <CustomInput
+        <div className="grid grid-cols-2 gap-8">
+          <ControlledInput
+            placeholder="Enter your name"
             label="Name"
-            placeholder="Enter your full name"
-            {...register("name", { required: "name is required" })}
-            aria-invalid={errors.name ? "true" : "false"}
-            onChange={() => clearErrors("name")}
+            control={control}
+            type="name"
+            name="Name"
+            rules={{ required: "Name is required" }}
           />
-          {errors.name && (
-            <p
-              className="text-red-950 playfair text-[15px] font-medium -my-2"
-              role="alert"
-            >
-              {errors.name?.message}
-            </p>
-          )}
-          <CustomInput
+
+          <ControlledInput
+            placeholder="Enter Business Name"
             label="Business Name"
-            placeholder="Enter your Business-Name"
-            {...register("businessName", {
-              required: "businessName is required",
-            })}
-            aria-invalid={errors.name ? "true" : "false"}
-            onChange={() => clearErrors("businessName")}
+            control={control}
+            type="string"
+            name="BusinessName"
+            rules={{ required: "BusinessName is required" }}
           />
-          {/* <p
-          className="text-red-950 playfair text-[15px] font-medium -my-2"
-          role="alert"
-        >
-          {errors.businessName?.message}
-        </p> */}
-          {errors.businessName && (
-            <p
-              className="text-red-950 playfair text-[15px] font-medium -my-2"
-              role="alert"
-            >
-              {errors.businessName?.message}
-            </p>
-          )}
-          <CustomInput
-            label="E-mail"
-            placeholder="Enter your E-mail"
-            {...register("email", { required: "Email Address is required" })}
-            aria-invalid={errors.email ? "true" : "false"}
-            onChange={() => clearErrors("email")}
+
+          <ControlledInput
+            placeholder="Enter Email"
+            label="Email"
+            control={control}
+            type="email"
+            name="email"
+            rules={{ required: "email is required" }}
           />
-          {/* <p
-          className="text-red-950 playfair text-[15px] font-medium -my-2"
-          role="alert"
-        >
-          {errors.email?.message}
-        </p> */}
-          {errors.email && (
-            <p
-              className="text-red-950 playfair text-[15px] font-medium -my-2"
-              role="alert"
-            >
-              {errors.email?.message}
-            </p>
-          )}
-          <CustomInput
+          <ControlledInput
+            placeholder="Enter Phone-Number"
             label="Phone-Number"
-            placeholder="Enter your Number"
-            {...register("phoneNumber", {
-              required: "phoneNumber is required",
-            })}
-            aria-invalid={errors.phoneNumber ? "true" : "false"}
-            onChange={() => clearErrors("phoneNumber")}
+            control={control}
+            type=""
+            name="phonenumber"
+            rules={{ required: "Phone-Number is required" }}
           />
-          {/* <p
-          className="text-red-950 playfair text-[15px] font-medium -my-2"
-          role="alert"
-        >
-          {errors.phoneNumber?.message}
-        </p> */}
-          {errors.phoneNumber && (
-            <p
-              className="text-red-950 playfair text-[15px] font-medium -my-2"
-              role="alert"
-            >
-              {errors.phoneNumber?.message}
-            </p>
-          )}
-          <CustomInput
-            label="City/State"
-            placeholder="Enter your state/city"
-            {...register("city", {
-              required: "city is required",
-            })}
-            aria-invalid={errors.city ? "true" : "false"}
-            onChange={() => clearErrors("city")}
+
+          <ControlledInput
+            placeholder="Enter city/state"
+            label="City"
+            control={control}
+            type=""
+            name="City"
+            rules={{ required: "city is required" }}
           />
-          {/* <p
-          className="text-red-950 playfair text-[15px] font-medium -my-2"
-          role="alert"
-        >
-          {errors.city?.message}
-        </p> */}
-          {errors.city && (
-            <p
-              className="text-red-950 playfair text-[15px] font-medium -my-2"
-              role="alert"
-            >
-              {errors.city?.message}
-            </p>
-          )}
-          <CustomInput
-            label="Type of Business"
-            placeholder="Enter Type of Business"
-            {...register("businessType", {
-              required: "businessType is required",
-            })}
-            aria-invalid={errors.businessType ? "true" : "false"}
-            onChange={() => clearErrors("businessType")}
+          <ControlledInput
+            placeholder="Enter type of business"
+            label="type of business"
+            control={control}
+            type=""
+            name="typeofbusiness"
+            rules={{ required: "business is required" }}
           />
-          {/* <p
-          className="text-red-950 playfair text-[15px] font-medium -my-2"
-          role="alert"
-        >
-          {errors.businessType?.message}
-        </p> */}
-          {errors.businessType && (
-            <p
-              className="text-red-950 playfair text-[15px] font-medium -my-2"
-              role="alert"
-            >
-              {errors.businessType?.message}
-            </p>
-          )}
-          <CustomInput
-            label="Salary Range"
+          <ControlledInput
             placeholder="Enter Salary Range"
-            {...register("salaryRange", {
-              required: "salaryRange is required",
-            })}
-            aria-invalid={errors.salaryRange ? "true" : "false"}
-            onChange={() => clearErrors("salaryRange")}
+            label="Salary Range"
+            control={control}
+            type=""
+            name="salary"
+            rules={{ required: "salary range is required" }}
           />
-          {/* <p
-          className="text-red-950 playfair text-[15px] font-medium -my-2"
-          role="alert"
-        >
-          {errors.salaryRange?.message}
-        </p> */}
-          {errors.salaryRange && (
-            <p
-              className="text-red-950 playfair text-[15px] font-medium -my-2"
-              role="alert"
-            >
-              {errors.salaryRange?.message}
-            </p>
-          )}
-
-          <CustomInput
-            label="No Of Graduates"
+          <ControlledInput
             placeholder="No Of Graduates"
-            {...register("noGraduates", {
-              required: "No Of Graduates is required",
-            })}
-            aria-invalid={errors.noGraduates ? "true" : "false"}
-            onChange={() => clearErrors("noGraduates")}
+            label="No Of Graduates"
+            control={control}
+            type=""
+            name="No Of Graduates"
+            rules={{ required: "No Of Graduates is required" }}
           />
-
-          {errors.noGraduates && (
-            <p
-              className="  text-red-950 playfair text-[15px] font-medium -my-2"
-              role="alert"
-            >
-              {errors.noGraduates?.message}
-            </p>
-          )}
         </div>
       </div>
-      <textarea
-        {...register("description", {
-          required: "description is required",
-        })}
-        aria-invalid={errors.description ? "true" : "false"}
-        onChange={() => clearErrors("description")}
-        placeholder="Describe any specific skills or qualities you are looking for in a graduate, or any other details about the position"
-        className="  w-full rounded-[0.5625rem]  drop-shadow-lg px-3  py-8 placeholder:text-[0.825rem]  bg-white placeholder:leading-[0.9375rem] placeholder:text-black focus:outline-none"
+      <ControlledTextArea
+        label="Description"
+        placeholder="Enter description"
+        control={control}
+        name="description"
+        rules={{ required: "description is required" }}
       />
-      {errors.description && (
-        <p
-          className="text-red-950 playfair text-[15px] font-medium -my-2"
-          role="alert"
-        >
-          {errors.description?.message}
-        </p>
-      )}
+
       <div className="flex  flex-col gap-2">
         <Link
           href="/login"
