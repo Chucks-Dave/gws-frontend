@@ -22,7 +22,7 @@ const Login = () => {
           control={control}
           type="email"
           name="email"
-          rules={{ required: "email is required" }}
+          rules={{ required: "Email is required" }}
         />
 
         <ControlledInput
@@ -31,7 +31,7 @@ const Login = () => {
           control={control}
           type="password"
           name="password"
-          rules={{ required: "password is required" }}
+          rules={{ required: "Password is required" }}
         />
         <div className="pt-5">
           <button className="bg-gws w-[12.5rem] rounded-[0.625rem] py-3 text-white playfair">
