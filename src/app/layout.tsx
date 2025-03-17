@@ -5,6 +5,8 @@ import "./globals.css";
 import { Provider } from "react-redux";
 import { store, persistor } from "../../redux/store";
 import { PersistGate } from "redux-persist/integration/react";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 const roboto = Roboto({
   subsets: ["latin"],
   display: "swap",
@@ -23,7 +25,17 @@ export const metadata: Metadata = {
 };
 
 // Create a client
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      gcTime: 1000 * 60 * 60 * 24, // 24 hours
+    },
+  },
+});
+
+const persister = createSyncStoragePersister({
+  storage: window.localStorage,
+});
 
 export default function RootLayout({
   children,
@@ -35,11 +47,16 @@ export default function RootLayout({
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <QueryClientProvider client={queryClient}>
-            <body
-              className={`${roboto.variable} ${playfair.variable} antialiased`}
+            <PersistQueryClientProvider
+              client={queryClient}
+              persistOptions={{ persister }}
             >
-              {children}
-            </body>
+              <body
+                className={`${roboto.variable} ${playfair.variable} antialiased`}
+              >
+                {children}
+              </body>
+            </PersistQueryClientProvider>
           </QueryClientProvider>
         </PersistGate>
       </Provider>
